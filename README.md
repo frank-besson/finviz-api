@@ -1,5 +1,9 @@
 # [finviz-api]( https://wavecakes-finviz.herokuapp.com/ )
-Flask web application that utilizes a [TTL Cache](https://cachetools.readthedocs.io/en/stable/) and [The Unofficial Finviz API](https://github.com/mariostoev/finviz) (with some [minor tweaks](https://github.com/frank-besson/finviz)) to provide API access to [Finviz.com](https://finviz.com/)
+Flask web application that utilizes...
+- [TTL Cache](https://cachetools.readthedocs.io/en/stable/)
+- [The Unofficial Finviz API](https://github.com/mariostoev/finviz) (with some [minor tweaks](https://github.com/frank-besson/finviz))<br>
+
+to provide API access to [Finviz.com](https://finviz.com/)
 
 *DEMO HOSTED ON HEROKU FREE-TIER INSTANCE*<br>
 *PLEASE ALLOW 30 SECONDS FOR INSANCE TO WAKE BEFORE USING*
