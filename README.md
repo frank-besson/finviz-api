@@ -28,3 +28,7 @@ to provide API access to [Finviz.com](https://finviz.com/)
     :param ticker: stock symbol
     :param last_ratings: most recent ratings to pull
     :return: list
+
+Disclaimer
+================
+Using the library to acquire data from FinViz is against their Terms of Service and robots.txt. Use it responsibly and at your own risk. This library is built purely for educational purposes.
