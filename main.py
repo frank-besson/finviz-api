@@ -67,6 +67,9 @@ def route_get_stock(ticker):
 def route_util():
 	return json.dumps(psutil.virtual_memory())
 
+@app.errorhandler(404)
+def route_missing(err):
+	return 'For routes and demo, please see https://github.com/frank-besson/finviz-api'
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 33507)), debug=False)
