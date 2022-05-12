@@ -1,6 +1,9 @@
 # [finviz-api]( https://wavecakes-finviz.herokuapp.com/ )
 Flask web application that utilizes a [TTL Cache](https://cachetools.readthedocs.io/en/stable/) and [The Unofficial Finviz API](https://github.com/mariostoev/finviz) (with some [minor tweaks](https://github.com/frank-besson/finviz)) to provide API access to [Finviz.com](https://finviz.com/)
 
+*DEMO HOSTED ON HEROKU FREE-TIER INSTANCE*<br>
+*PLEASE ALLOW 30 SECONDS FOR INSANCE TO WAKE BEFORE USING*
+
 ## API Routes
 ### [get_stocks/\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_stock/goog)
     Returns a dictionary containing stock data.
