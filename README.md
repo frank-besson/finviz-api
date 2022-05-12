@@ -7,15 +7,15 @@ Flask web application that utilizes a [TTL Cache](https://cachetools.readthedocs
     :param ticker: stock symbol
     :type ticker: str
     :return dict
-### [get_insider\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_insider/goog)
+### [get_insider/\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_insider/goog)
     Returns a list of dictionaries containing all recent insider transactions.
     :param ticker: stock symbol
     :return: list
-### [get_news\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_news/goog)
+### [get_news/\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_news/goog)
     Returns a list of sets containing news headline and url
     :param ticker: stock symbol
     :return: list
-### [get_analyst_price_targets\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_analyst_price_targets/goog)
+### [get_analyst_price_targets/\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_analyst_price_targets/goog)
     Returns a list of dictionaries containing all analyst ratings and Price targets
      - if any of 'price_from' or 'price_to' are not available in the DATA, then those values are set to default 0
     :param ticker: stock symbol
