@@ -5,6 +5,9 @@ from finviz import get_stock, get_insider, get_news, get_analyst_price_targets
 import requests
 from flask import Flask
 
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 get_stock_cache = TTLCache(maxsize=100, ttl=60*15)
 get_insider_cache = TTLCache(maxsize=100, ttl=60*15)
 get_news_cache = TTLCache(maxsize=100, ttl=60*15)
@@ -12,6 +15,7 @@ get_analyst_price_targets_cache = TTLCache(maxsize=100, ttl=60*15)
 
 app = Flask(__name__)
 
+limiter = Limiter(app, key_func=get_remote_address)
 
 def get_from_cache(key, cache, get_func):
 	'''
@@ -42,28 +46,31 @@ def get_from_cache(key, cache, get_func):
 		return json.dumps({'response': str(e)}), 500
 		
 
-
 @app.route("/get_analyst_price_targets/<string:ticker>",  methods=['GET'])
+@limiter.limit("5/hour")
 def route_get_analyst_price_targets(ticker):
 	return get_from_cache(ticker, get_analyst_price_targets_cache, get_analyst_price_targets)
 
 
 @app.route("/get_news/<string:ticker>",  methods=['GET'])
+@limiter.limit("5/hour")
 def route_get_news(ticker):
 	return get_from_cache(ticker, get_news_cache, get_news)
 
-
+@limiter.limit("10/hour") # maximum of 10 requests per minute
 @app.route("/get_insider/<string:ticker>",  methods=['GET'])
 def route_get_insider(ticker):
 	return get_from_cache(ticker, get_insider_cache, get_insider)
 
-	
+
 @app.route("/get_stock/<string:ticker>",  methods=['GET'])
+@limiter.limit("5/hour")
 def route_get_stock(ticker):
 	return get_from_cache(ticker, get_stock_cache, get_stock)
 
 
 @app.route("/util",  methods=['GET'])
+@limiter.limit("5/hour")
 def route_util():
 	return json.dumps(psutil.virtual_memory())
 
