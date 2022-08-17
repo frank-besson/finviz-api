@@ -14,7 +14,8 @@ get_news_cache = TTLCache(maxsize=100, ttl=60*15)
 get_analyst_price_targets_cache = TTLCache(maxsize=100, ttl=60*15)
 
 app = Flask(__name__)
-
+ 
+# https://www.section.io/engineering-education/implementing-rate-limiting-in-flask/
 limiter = Limiter(app, key_func=get_remote_address)
 
 def get_from_cache(key, cache, get_func):
