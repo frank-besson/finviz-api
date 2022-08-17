@@ -1,9 +1,15 @@
 import os, json
 import psutil
+
 from cachetools import TTLCache
 from finviz import get_stock, get_insider, get_news, get_analyst_price_targets
 import requests
 from flask import Flask
+
+import markdown
+import markdown.extensions.fenced_code
+import markdown.extensions.codehilite
+from pygments.formatters import HtmlFormatter
 
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -77,7 +83,21 @@ def route_util():
 
 @app.errorhandler(404)
 def route_missing(err):
-	return 'For routes and demo, please see https://github.com/frank-besson/finviz-api'
+
+	# https://rudra.dev/posts/rendering-markdown-from-flask/
+	md_template_string = 'For routes and demo, please see https://github.com/frank-besson/finviz-api'
+
+	with open('README.md','r') as f:
+		md_template_string = markdown.markdown(
+          f.read(), extensions=["fenced_code", "codehilite"]
+      	)
+
+	formatter = HtmlFormatter(style="emacs",full=True,cssclass="codehilite")
+	css_string = formatter.get_style_defs()
+	md_css_string = "<style>" + css_string + "</style>"
+
+	md_template = md_css_string + md_template_string
+	return md_template
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 33507)), debug=False)

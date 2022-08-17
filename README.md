@@ -5,8 +5,7 @@ Flask web application that utilizes...
 
 to provide API access to [Finviz.com](https://finviz.com/)
 
-*DEMO HOSTED ON HEROKU FREE-TIER INSTANCE*<br>
-*PLEASE ALLOW 30 SECONDS FOR INSANCE TO WAKE BEFORE USING*
+rate limit: 5 requests / route / hour
 
 ## API Routes
 ### [get_stocks/\<str:ticker\>](https://wavecakes-finviz.herokuapp.com/get_stock/goog)
